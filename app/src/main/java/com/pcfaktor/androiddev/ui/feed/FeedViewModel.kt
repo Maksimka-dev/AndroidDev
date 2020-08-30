@@ -1,7 +1,7 @@
-package com.pcfaktor.androiddev.ui.main
+package com.pcfaktor.androiddev.ui.feed
 
 import androidx.lifecycle.ViewModel
 
-class MainViewModel : ViewModel() {
+class FeedViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

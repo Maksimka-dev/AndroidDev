@@ -1,33 +1,35 @@
-package com.pcfaktor.androiddev.ui.main
+package com.pcfaktor.androiddev.ui.feed
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.pcfaktor.androiddev.R
+import com.pcfaktor.androiddev.databinding.FragmentFeedBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
-class MainFragment : Fragment() {
+class FeedFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = FeedFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    private var _binding: FragmentFeedBinding? = null
+    private val binding: FragmentFeedBinding get() = _binding!!
+    private val viewModel by viewModel<FeedViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        _binding = FragmentFeedBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         Timber.i("onViewCreated()")
     }
 }

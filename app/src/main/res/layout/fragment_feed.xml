@@ -5,13 +5,16 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainFragment">
+    android:padding="8dp"
+    tools:context=".ui.feed.FeedFragment">
 
-    <WebView
-        android:id="@+id/wv_WebView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_feed"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_feed" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
