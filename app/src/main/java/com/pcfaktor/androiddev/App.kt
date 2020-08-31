@@ -1,6 +1,8 @@
 package com.pcfaktor.androiddev
 
 import android.app.Application
+import com.pcfaktor.androiddev.di.networkModule
+import com.pcfaktor.androiddev.di.repositoryModule
 import com.pcfaktor.androiddev.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -12,9 +14,14 @@ class App : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@App)
-            modules(listOf(viewModelModule))
+            modules(
+                listOf(
+                    viewModelModule,
+                    networkModule,
+                    repositoryModule
+                )
+            )
         }
-
         Timber.plant(Timber.DebugTree())
     }
 }

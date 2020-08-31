@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.pcfaktor.androiddev.data.mockArticles
 import com.pcfaktor.androiddev.databinding.FragmentFeedBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -18,6 +21,8 @@ class FeedFragment : Fragment() {
     private var _binding: FragmentFeedBinding? = null
     private val binding: FragmentFeedBinding get() = _binding!!
     private val viewModel by viewModel<FeedViewModel>()
+    private lateinit var adapter: FeedAdapter
+    private lateinit var recycler: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,6 +35,15 @@ class FeedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Timber.i("onViewCreated()")
+        recycler = binding.recyclerFeed
+        recycler.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        adapter = FeedAdapter { onClickItem(it) }
+        adapter.submitList(mockArticles)
+        recycler.adapter = adapter
+    }
+
+    private fun onClickItem(position: Int) {
+        Timber.i("onClickItem($position)")
     }
 }
