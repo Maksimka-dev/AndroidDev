@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.pcfaktor.androiddev.data.mockArticles
 import com.pcfaktor.androiddev.databinding.FragmentFeedBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -39,11 +38,20 @@ class FeedFragment : Fragment() {
         recycler.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         adapter = FeedAdapter { onClickItem(it) }
-        adapter.submitList(mockArticles)
+        initViews()
+    }
+
+    private fun initViews() {
+        viewModel.articlesLiveData.observe(viewLifecycleOwner, { adapter.submitList(it) })
         recycler.adapter = adapter
     }
 
     private fun onClickItem(position: Int) {
         Timber.i("onClickItem($position)")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.onStart()
     }
 }

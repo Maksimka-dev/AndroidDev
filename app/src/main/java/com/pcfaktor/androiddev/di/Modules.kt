@@ -8,7 +8,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {
-    viewModel { FeedViewModel() }
+    viewModel { FeedViewModel(get()) }
 }
 
 val networkModule = module {
@@ -17,5 +17,5 @@ val networkModule = module {
 }
 
 val repositoryModule = module {
-    single { Repository(get()) }
+    single { Repository(get(), get()) }
 }

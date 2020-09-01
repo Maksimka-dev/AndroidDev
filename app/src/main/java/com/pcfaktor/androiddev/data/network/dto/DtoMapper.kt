@@ -2,6 +2,10 @@ package com.pcfaktor.androiddev.data.network.dto
 
 import com.pcfaktor.androiddev.domain.entity.Article
 import com.pcfaktor.androiddev.domain.entity.Channel
+import org.jsoup.Jsoup
+
+private const val POSTFIX_RU = "Читать дальше"
+private const val POSTFIX_EN = "Read more"
 
 class DtoMapper {
 
@@ -23,14 +27,24 @@ class DtoMapper {
     }
 
     private fun mapArticle(articleDto: ArticleDto): Article {
+        val descriptionData = Jsoup.parse(articleDto.description)
+        val imgLink = descriptionData.selectFirst("img")?.let {
+            it.attr("src")
+        } ?: ""
+        val readMoreLink = descriptionData.select("a")?.let {
+            it.eachAttr("href").last()
+        } ?: ""
+        val descriptionText = descriptionData.text()
+            .substringBefore(POSTFIX_RU)
+            .substringBefore(POSTFIX_EN)
         return Article(
             title = articleDto.title,
-            description = articleDto.description,
-            image = articleDto.link, // TODO: get image from description
+            description = descriptionText,
+            image = imgLink,
             creator = articleDto.creator,
             date = articleDto.pubDate,
             link = articleDto.link,
-            readMoreReference = articleDto.link // TODO: get read more reference from description
+            readMoreReference = readMoreLink
         )
     }
 }

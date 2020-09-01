@@ -31,9 +31,14 @@ class FeedAdapter(
         currentItem.run {
             holder.binding.tvItemTitle.text = title
             holder.binding.tvItemDescription.text = description
-            holder.binding.ivItemImage.load(Uri.parse(image))
             holder.binding.tvItemCreator.text = creator
             holder.binding.tvItemDate.text = date
+            if (image.isBlank()) {
+                holder.binding.ivItemImage.visibility = View.GONE
+            } else {
+                holder.binding.ivItemImage.load(Uri.parse(image))
+                holder.binding.ivItemImage.visibility = View.VISIBLE
+            }
         }
     }
 

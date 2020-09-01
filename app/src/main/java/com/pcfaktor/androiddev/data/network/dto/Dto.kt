@@ -8,7 +8,7 @@ import com.tickaroo.tikxml.annotation.Xml
 @Xml(name = "rss")
 data class DataDto(
     @Attribute
-    val version: Float,
+    val version: String,
     @Element(name = "channel")
     val channelDto: ChannelDto
 )
@@ -51,8 +51,6 @@ data class ArticleDto(
     val title: String,
     @PropertyElement
     val description: String,
-    @Attribute
-    val guid: String,
     @PropertyElement
     val link: String,
     @PropertyElement

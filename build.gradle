@@ -70,5 +70,6 @@ ext {
     ibmWatsonVersion = "8.5.0"
     retrofitVersion = "2.9.0"
     moshiVersion = "1.9.3"
-    tikxmlVersion = '0.8.13'
+    tikxmlVersion = "0.8.13"
+    jsoupVersion = "1.13.1"
 }

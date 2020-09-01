@@ -95,6 +95,7 @@ dependencies {
     implementation "com.tickaroo.tikxml:retrofit-converter:$rootProject.tikxmlVersion"
     kapt "com.tickaroo.tikxml:auto-value-tikxml:$rootProject.tikxmlVersion"
     kapt "com.tickaroo.tikxml:processor:$rootProject.tikxmlVersion"
+    implementation "org.jsoup:jsoup:$rootProject.jsoupVersion"
 
     // Testing
     testImplementation "junit:junit:4.13"
