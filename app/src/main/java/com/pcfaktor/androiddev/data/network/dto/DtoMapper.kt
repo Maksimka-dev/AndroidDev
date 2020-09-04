@@ -37,12 +37,14 @@ class DtoMapper {
         val descriptionText = descriptionData.text()
             .substringBefore(POSTFIX_RU)
             .substringBefore(POSTFIX_EN)
+
+        val date = articleDto.pubDate.substring(5..21)
         return Article(
             title = articleDto.title,
             description = descriptionText,
             image = imgLink,
             creator = articleDto.creator,
-            date = articleDto.pubDate,
+            date = date,
             link = articleDto.link,
             readMoreReference = readMoreLink
         )

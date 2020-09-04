@@ -9,7 +9,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/primaryColor"
+        android:background="@color/primaryDarkColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,8 +45,19 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_item_title"
-        tools:text="@tools:sample/lorem/random" />
+        app:layout_constraintTop_toBottomOf="@id/tv_item_title" />
+
+    <ImageView
+        android:id="@+id/iv_creator"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:contentDescription="@string/description_creator_avatar"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_creator"
+        app:layout_constraintBottom_toTopOf="@+id/tv_item_date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_description" />
 
     <TextView
         android:id="@+id/tv_item_creator"
@@ -55,32 +66,36 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/tv_item_date"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_creator"
         app:layout_constraintTop_toBottomOf="@+id/tv_item_description"
         tools:text="Evil corp" />
 
     <TextView
         android:id="@+id/tv_item_date"
-        style="@style/DescriptionTextStyle"
+        style="@style/FeedItemText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:textColor="@color/secondaryTextColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_item_creator"
         tools:text="30 Aug 2020" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/bn_read_more"
+        style="?attr/materialButtonOutlinedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@android:color/transparent"
+        android:layout_margin="8dp"
+        android:layout_marginVertical="8dp"
         android:text="@string/bn_read_more"
         android:textAllCaps="false"
         android:textColor="@color/secondaryColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_item_description"
         app:strokeColor="@color/secondaryColor"
-        app:strokeWidth="2dp" />
+        app:strokeWidth="2dp"
+        tools:background="@android:color/transparent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

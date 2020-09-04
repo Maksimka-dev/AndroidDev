@@ -2,4 +2,5 @@
     <string name="app_name">AndroidDev</string>
     <string name="description_article_image">article image</string>
     <string name="bn_read_more">Read more</string>
+    <string name="description_creator_avatar">Creator avatar</string>
 </resources>

@@ -20,7 +20,7 @@ class FeedAdapter(
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.item_feed, parent, false)
         val holder = ArticleViewHolder(itemView)
-        holder.itemView.setOnClickListener {
+        holder.binding.bnReadMore.setOnClickListener {
             onClickListener(holder.adapterPosition)
         }
         return holder

@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.create
 
 object ApiService {
-    private const val BASE_URL = "https://habr.com/"
+    const val BASE_URL = "https://habr.com/"
 
     private var tikXml = TikXml.Builder().exceptionOnUnreadXml(false).build()
     private val retrofitRss = Retrofit.Builder()
@@ -16,5 +16,5 @@ object ApiService {
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
-    val retrofitService: HabrRssService = retrofitRss.create()
+    val retrofitService: RssService = retrofitRss.create()
 }

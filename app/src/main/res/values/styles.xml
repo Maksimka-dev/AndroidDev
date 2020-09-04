@@ -5,7 +5,7 @@
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/secondaryColor</item>
-        <item name="android:windowBackground">@color/primaryDarkColor</item>
+        <item name="android:windowBackground">@color/primaryColor</item>
         <item name="android:textColor">@color/primaryTextColor</item>
     </style>
 
@@ -21,6 +21,7 @@
 
     <style name="DescriptionTextStyle" parent="FeedItemText">
         <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>

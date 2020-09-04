@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.pcfaktor.androiddev.R
 import com.pcfaktor.androiddev.databinding.FragmentFeedBinding
+import com.pcfaktor.androiddev.ui.full_article.FullArticleFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class FeedFragment : Fragment() {
 
@@ -47,11 +48,20 @@ class FeedFragment : Fragment() {
     }
 
     private fun onClickItem(position: Int) {
-        Timber.i("onClickItem($position)")
+        val link = viewModel.articlesLiveData.value?.get(position)?.readMoreReference ?: ""
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.container, FullArticleFragment.newInstance(link))
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onStart() {
         super.onStart()
         viewModel.onStart()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
