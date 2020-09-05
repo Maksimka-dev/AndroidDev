@@ -13,7 +13,8 @@ import com.pcfaktor.androiddev.databinding.ItemFeedBinding
 import com.pcfaktor.androiddev.domain.entity.Article
 
 class FeedAdapter(
-    private val onClickListener: (position: Int) -> Unit
+    private val onClickListener: (position: Int) -> Unit,
+    private val onLongClickListener: (position: Int) -> Unit
 ) : ListAdapter<Article, ArticleViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
@@ -22,6 +23,10 @@ class FeedAdapter(
         val holder = ArticleViewHolder(itemView)
         holder.binding.bnReadMore.setOnClickListener {
             onClickListener(holder.adapterPosition)
+        }
+        holder.itemView.setOnLongClickListener {
+            onLongClickListener(holder.adapterPosition)
+            true
         }
         return holder
     }
@@ -39,6 +44,10 @@ class FeedAdapter(
                 holder.binding.ivItemImage.load(Uri.parse(image))
                 holder.binding.ivItemImage.visibility = View.VISIBLE
             }
+            if (bookmarked)
+                holder.binding.ivBookmark.visibility = View.VISIBLE
+            else
+                holder.binding.ivBookmark.visibility = View.GONE
         }
     }
 

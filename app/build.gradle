@@ -59,7 +59,7 @@ dependencies {
     kapt "android.arch.lifecycle:common-java8:$rootProject.lifecycleVersion"
 
     // Logging
-    implementation "com.jakewharton.timber:timber:$timberVersion"
+    implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
 
     // UI
     implementation "com.google.android.material:material:$rootProject.materialVersion"
@@ -72,7 +72,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutinesVersion"
 
     // Fragment
-    implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
+    implementation "androidx.fragment:fragment-ktx:$rootProject.fragmentVersion"
+    implementation "androidx.viewpager2:viewpager2:$rootProject.viewpagerVersion"
 
     // DI
     implementation "org.koin:koin-core:$rootProject.koinVersion"
