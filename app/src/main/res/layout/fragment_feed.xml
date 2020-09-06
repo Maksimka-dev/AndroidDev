@@ -8,13 +8,56 @@
     android:padding="8dp"
     tools:context=".ui.feed.FeedFragment">
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_feed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:constraint_referenced_ids="title_with_stroke,tv_note"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/title_with_stroke"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:text="@string/title_no_bookmarks"
+        android:textAllCaps="false"
+        android:textColor="@color/secondaryColor"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:strokeColor="@color/secondaryColor"
+        app:strokeWidth="4dp"
+        tools:background="@android:color/transparent" />
+
+    <TextView
+        android:id="@+id/tv_note"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/note_empty_bookmarks"
+        android:textAlignment="center"
+        android:textColor="#80FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/title_with_stroke"
+        app:layout_constraintEnd_toEndOf="@id/title_with_stroke"
+        app:layout_constraintStart_toStartOf="@id/title_with_stroke"
+        app:layout_constraintTop_toTopOf="@id/title_with_stroke" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_feed"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_feed" />
-
+        tools:listitem="@layout/item_feed"
+        tools:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

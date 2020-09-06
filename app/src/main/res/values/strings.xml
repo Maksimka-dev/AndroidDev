@@ -4,4 +4,13 @@
     <string name="bn_read_more">Read more</string>
     <string name="description_creator_avatar">Creator avatar</string>
     <string name="description_bookmark_star">Bookmark star</string>
+    <string name="title_no_bookmarks">No Bookmarks\n\n\n\n</string>
+    <string name="title_my_feed">My Feed\n\n\n\n</string>
+    <string name="title_full_article">Full Article View\n\n\n\n</string>
+    <string name="note_empty_bookmarks">Long press on the article to bookmark a story</string>
+    <string name="note_empty_feed">We can\'t upload articles. Please check connection and try again</string>
+    <string name="note_empty_article">Tab on the button "Read more" for read full article</string>
+    <string name="item_title_feed">Feed</string>
+    <string name="item_title_bookmarks">Bookmarks</string>
+    <string name="item_title_article">Article</string>
 </resources>

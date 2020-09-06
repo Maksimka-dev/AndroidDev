@@ -7,6 +7,6 @@ data class Article(
     val creator: String,
     val date: String,
     val link: String,
-    val readMoreReference: String,
-    val bookmarked: Boolean = false
+    val readMoreLink: String,
+    var isBookmarked: Boolean = false
 )

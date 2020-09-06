@@ -67,12 +67,13 @@ class FullArticleFragment : Fragment() {
         webView.settings.javaScriptEnabled = true
         webView.setBackgroundColor(resources.getColor(R.color.primaryDarkColor))
         webView.webViewClient = WebViewClient()
-//        arguments?.let {
-//            viewModel.link.value = this.arguments?.getString(KEY_LINK) ?: BASE_URL
-//        }
-
         viewModel.link.observe(viewLifecycleOwner, {
-            webView.loadUrl(it)
+            if (it != ERROR_LINK) {
+                webView.loadUrl(it)
+                binding.groupArticle.visibility = View.GONE
+            } else {
+                binding.groupArticle.visibility = View.VISIBLE
+            }
         })
     }
 

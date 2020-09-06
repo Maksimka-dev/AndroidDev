@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pcfaktor.androiddev.AppActivity
 import com.pcfaktor.androiddev.PAGE_ARTICLE
+import com.pcfaktor.androiddev.R
 import com.pcfaktor.androiddev.databinding.FragmentFeedBinding
 import com.pcfaktor.androiddev.ui.full_article.KEY_LINK
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 class FeedFragment : Fragment() {
 
@@ -48,25 +48,41 @@ class FeedFragment : Fragment() {
     }
 
     private fun initViews() {
-        viewModel.articlesLiveData.observe(viewLifecycleOwner, { adapter.submitList(it) })
+        viewModel.articlesLiveData.observe(viewLifecycleOwner, {
+            adapter.submitList(it)
+            adapter.notifyDataSetChanged()
+            setContentStub()
+        })
         recycler.adapter = adapter
     }
 
+    private fun setContentStub() {
+        if (adapter.currentList.size == 0) {
+            binding.titleWithStroke.text =
+                resources.getString(R.string.title_my_feed)
+            binding.tvNote.text = resources.getString(R.string.note_empty_feed)
+            binding.groupFeed.visibility = View.VISIBLE
+        } else {
+            binding.groupFeed.visibility = View.GONE
+        }
+    }
+
     private fun onLongClickItem(position: Int) {
-        Timber.i("onLongClick(position:$position)")
+        val article = viewModel.articlesLiveData.value?.get(position)
+        if (article != null)
+            viewModel.updateBookmarks(article)
     }
 
     private fun onClickItem(position: Int) {
-        Timber.i("onBnClick(position:$position)")
-        val link = viewModel.articlesLiveData.value?.get(position)?.readMoreReference ?: ""
+        val link = viewModel.articlesLiveData.value?.get(position)?.readMoreLink ?: ""
         val intent = Intent(PAGE_ARTICLE)
         intent.putExtra(KEY_LINK, link)
         context?.sendBroadcast(intent)
     }
 
-    override fun onStart() {
-        super.onStart()
-        viewModel.onStart()
+    override fun onResume() {
+        super.onResume()
+        viewModel.onResume()
     }
 
     override fun onDestroyView() {

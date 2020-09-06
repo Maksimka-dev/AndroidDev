@@ -1,13 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.full_article.FullArticleFragment">
 
     <WebView
         android:id="@+id/wv_full_article"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_article"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:constraint_referenced_ids="title_with_stroke_article,tv_note_article"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/title_with_stroke_article"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:text="@string/title_full_article"
+        android:textAllCaps="false"
+        android:textColor="@color/secondaryColor"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:strokeColor="@color/secondaryColor"
+        app:strokeWidth="4dp"
+        tools:background="@android:color/transparent" />
+
+    <TextView
+        android:id="@+id/tv_note_article"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="8dp"
+        android:gravity="center"
+        android:text="@string/note_empty_article"
+        android:textAlignment="center"
+        android:textColor="#80FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/title_with_stroke_article"
+        app:layout_constraintEnd_toEndOf="@id/title_with_stroke_article"
+        app:layout_constraintStart_toStartOf="@id/title_with_stroke_article"
+        app:layout_constraintTop_toTopOf="@id/title_with_stroke_article" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

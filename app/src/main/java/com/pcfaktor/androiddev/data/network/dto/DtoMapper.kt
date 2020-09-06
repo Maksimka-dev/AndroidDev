@@ -20,6 +20,7 @@ class DtoMapper {
             image = channelDataDto.image.url,
             articleList = mapArticleList(channelDataDto.articleList)
         )
+
     }
 
     private fun mapArticleList(articleList: List<ArticleDto>): List<Article> {
@@ -46,7 +47,7 @@ class DtoMapper {
             creator = articleDto.creator,
             date = date,
             link = articleDto.link,
-            readMoreReference = readMoreLink
+            readMoreLink = readMoreLink
         )
     }
 }

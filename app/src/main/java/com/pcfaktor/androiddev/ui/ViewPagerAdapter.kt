@@ -8,6 +8,11 @@ import com.pcfaktor.androiddev.ui.bookmarks.BookmarksFragment
 import com.pcfaktor.androiddev.ui.feed.FeedFragment
 import com.pcfaktor.androiddev.ui.full_article.FullArticleFragment
 
+
+const val FEED_FRAGMENT = 0
+const val BOOKMARKS_FRAGMENT = 1
+const val ARTICLE_FRAGMENT = 2
+
 class ViewPagerAdapter(activity: AppActivity) : FragmentStateAdapter(activity) {
 
     var link: String = ERROR_LINK
@@ -16,8 +21,8 @@ class ViewPagerAdapter(activity: AppActivity) : FragmentStateAdapter(activity) {
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> FeedFragment.newInstance()
-            1 -> BookmarksFragment.newInstance()
+            FEED_FRAGMENT -> FeedFragment.newInstance()
+            BOOKMARKS_FRAGMENT -> BookmarksFragment.newInstance()
             else -> FullArticleFragment.newInstance(link)
         }
     }

@@ -44,7 +44,7 @@ class FeedAdapter(
                 holder.binding.ivItemImage.load(Uri.parse(image))
                 holder.binding.ivItemImage.visibility = View.VISIBLE
             }
-            if (bookmarked)
+            if (isBookmarked)
                 holder.binding.ivBookmark.visibility = View.VISIBLE
             else
                 holder.binding.ivBookmark.visibility = View.GONE

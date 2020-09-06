@@ -11,7 +11,7 @@ val mockArticles = listOf(
         creator = "arkivanov",
         date = "Thu, 27 Aug 2020 12:52:18 GMT",
         link = "https://habr.com/ru/post/516808",
-        readMoreReference = "https://habr.com/ru/post/516808/?utm_campaign=516808&amp;utm_source=habrahabr&amp;utm_medium=rss#habracut"
+        readMoreLink = "https://habr.com/ru/post/516808/?utm_campaign=516808&amp;utm_source=habrahabr&amp;utm_medium=rss#habracut"
     ),
     Article(
         title = "Архитектурный шаблон MVI в Kotlin Multiplatform. Часть 3: тестирование",
@@ -20,7 +20,7 @@ val mockArticles = listOf(
         creator = "arkivanov",
         date = "Thu, 27 Aug 2020 12:52:18 GMT",
         link = "https://habr.com/ru/post/516808",
-        readMoreReference = "https://habr.com/ru/post/516808/?utm_campaign=516808&amp;utm_source=habrahabr&amp;utm_medium=rss#habracut"
+        readMoreLink = "https://habr.com/ru/post/516808/?utm_campaign=516808&amp;utm_source=habrahabr&amp;utm_medium=rss#habracut"
 
     )
 )

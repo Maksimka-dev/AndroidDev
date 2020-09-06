@@ -9,8 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.pcfaktor.androiddev.data.network.ApiService.BASE_URL
 import com.pcfaktor.androiddev.databinding.ActivityAppBinding
+import com.pcfaktor.androiddev.ui.ARTICLE_FRAGMENT
+import com.pcfaktor.androiddev.ui.BOOKMARKS_FRAGMENT
+import com.pcfaktor.androiddev.ui.FEED_FRAGMENT
 import com.pcfaktor.androiddev.ui.ViewPagerAdapter
 import com.pcfaktor.androiddev.ui.full_article.KEY_LINK
+
 
 const val PAGE_FEED = "feed"
 const val PAGE_BOOKMARKS = "bookmarks"
@@ -36,6 +40,23 @@ class AppActivity : AppCompatActivity() {
         adapter = ViewPagerAdapter(this)
         binding.viewpager.adapter = adapter
         receiveViewPagerCalls()
+        setBottomNavigationBar()
+    }
+
+    private fun setBottomNavigationBar() {
+        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.action_item_feed -> viewPager.currentItem = FEED_FRAGMENT
+                R.id.action_item_bookmarks -> viewPager.currentItem = BOOKMARKS_FRAGMENT
+                R.id.action_item_article -> {
+                    adapter.link =
+                        intent.extras?.getString(KEY_LINK) ?: ERROR_LINK
+                    viewPager.currentItem = ARTICLE_FRAGMENT
+                }
+            }
+            true
+        }
+
     }
 
     private fun receiveViewPagerCalls() {
@@ -48,12 +69,19 @@ class AppActivity : AppCompatActivity() {
 
             override fun onReceive(context: Context?, intent: Intent?) {
                 when (intent?.action) {
-                    PAGE_FEED -> viewPager.currentItem = 0
-                    PAGE_BOOKMARKS -> viewPager.currentItem = 1
+                    PAGE_FEED -> {
+                        viewPager.currentItem = FEED_FRAGMENT
+                        binding.bottomNavigation.selectedItemId = R.id.action_item_feed
+                    }
+                    PAGE_BOOKMARKS -> {
+                        viewPager.currentItem = BOOKMARKS_FRAGMENT
+                        binding.bottomNavigation.selectedItemId = R.id.action_item_bookmarks
+                    }
                     PAGE_ARTICLE -> {
                         adapter.link =
                             intent.extras?.getString(KEY_LINK) ?: ERROR_LINK
-                        viewPager.currentItem = 2
+                        viewPager.currentItem = ARTICLE_FRAGMENT
+                        binding.bottomNavigation.selectedItemId = R.id.action_item_article
                     }
                 }
             }

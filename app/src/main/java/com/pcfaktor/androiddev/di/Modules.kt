@@ -1,6 +1,7 @@
 package com.pcfaktor.androiddev.di
 
 import com.pcfaktor.androiddev.data.Repository
+import com.pcfaktor.androiddev.data.base.ArticlesRoomDatabase
 import com.pcfaktor.androiddev.data.network.ApiService
 import com.pcfaktor.androiddev.data.network.dto.DtoMapper
 import com.pcfaktor.androiddev.ui.bookmarks.BookmarksViewModel
@@ -12,7 +13,7 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel { FeedViewModel(get()) }
     viewModel { FullArticleViewModel() }
-    viewModel { BookmarksViewModel() }
+    viewModel { BookmarksViewModel(get()) }
 }
 
 val networkModule = module {
@@ -21,5 +22,7 @@ val networkModule = module {
 }
 
 val repositoryModule = module {
-    single { Repository(get(), get()) }
+    single { Repository(get(), get(), get()) }
+    single { ArticlesRoomDatabase.getDatabase(context = get()) }
+    single { get<ArticlesRoomDatabase>().articleDao() }
 }
