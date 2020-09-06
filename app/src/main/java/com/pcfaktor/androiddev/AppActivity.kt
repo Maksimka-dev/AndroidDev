@@ -48,11 +48,7 @@ class AppActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.action_item_feed -> viewPager.currentItem = FEED_FRAGMENT
                 R.id.action_item_bookmarks -> viewPager.currentItem = BOOKMARKS_FRAGMENT
-                R.id.action_item_article -> {
-                    adapter.link =
-                        intent.extras?.getString(KEY_LINK) ?: ERROR_LINK
-                    viewPager.currentItem = ARTICLE_FRAGMENT
-                }
+                R.id.action_item_article -> viewPager.currentItem = ARTICLE_FRAGMENT
             }
             true
         }

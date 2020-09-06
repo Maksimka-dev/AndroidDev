@@ -55,7 +55,7 @@ class FullArticleFragment : Fragment() {
         if (savedInstanceState != null)
             viewModel.link.value = savedInstanceState.getString(KEY_LINK)
         else
-            viewModel.link.value = arguments?.getString(KEY_LINK) ?: ERROR_LINK
+            viewModel.link.value = arguments?.getString(KEY_LINK)
         initViews()
     }
 
@@ -69,8 +69,8 @@ class FullArticleFragment : Fragment() {
         webView.webViewClient = WebViewClient()
         viewModel.link.observe(viewLifecycleOwner, {
             if (it != ERROR_LINK) {
-                webView.loadUrl(it)
                 binding.groupArticle.visibility = View.GONE
+                webView.loadUrl(it)
             } else {
                 binding.groupArticle.visibility = View.VISIBLE
             }
